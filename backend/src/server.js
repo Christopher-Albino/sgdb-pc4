@@ -34,8 +34,8 @@ app.use('/api/reportes', reportesRouter);    // REP01-REP05
 
 const PORT = process.env.PORT || 3001;
 initPool()
-  .then(() => app.listen(PORT, () => console.log(`\n🚀 API escuchando en http://localhost:${PORT}\n`)))
+  .then(() => app.listen(PORT, () => console.log(`\nAPI escuchando en http://localhost:${PORT}\n`)))
   .catch((err) => {
-    console.error(`\n✗ No se pudo conectar a Oracle: ${err.message}\n`);
+    console.error(`\nNo se pudo conectar a Oracle: ${err.message}\n`);
     process.exit(1);
   });

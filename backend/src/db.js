@@ -25,7 +25,7 @@ export async function initPool() {
     poolMax: 5,
     poolAlias: 'default',
   });
-  console.log(`✓ Pool creado con usuario ${process.env.APP_USER}`);
+  console.log(`Pool creado con usuario ${process.env.APP_USER}`);
 }
 
 /**
