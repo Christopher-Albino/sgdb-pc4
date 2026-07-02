@@ -3,15 +3,14 @@ import { api } from './api.js';
 import logo from './logo.png';
 import banner from './banner login.png';
 
-// Usuarios de prueba para facilitar la demostración (clic para autocompletar).
-// Los `id`/`rol` en mayúscula coinciden con la carga de 08_datos_prueba.sql
-// y con lo que devuelve /api/auth/login (usados por el bypass temporal de abajo).
+// Usuarios de prueba: solo autocompletan el formulario, no inician sesión por sí solos.
+// El login real (contra el backend) sigue siendo obligatorio al presionar "Ingresar".
 const DEMO = [
-  { id: 1, u: 'admin', p: 'admin123', rol: 'ADMINISTRADOR', label: 'Administrador' },
-  { id: 2, u: 'ana', p: 'ana123', rol: 'ANALISTA', label: 'Analista' },
-  { id: 3, u: 'caja', p: 'caja123', rol: 'CAJERO', label: 'Cajero' },
-  { id: 4, u: 'super', p: 'super123', rol: 'SUPERVISOR', label: 'Supervisor' },
-  { id: 5, u: 'geren', p: 'geren123', rol: 'GERENTE', label: 'Gerente' },
+  { u: 'admin', p: 'admin123', label: 'Administrador' },
+  { u: 'ana', p: 'ana123', label: 'Analista' },
+  { u: 'caja', p: 'caja123', label: 'Cajero' },
+  { u: 'super', p: 'super123', label: 'Supervisor' },
+  { u: 'geren', p: 'geren123', label: 'Gerente' },
 ];
 
 export default function Login({ onLogin }) {
@@ -65,15 +64,7 @@ export default function Login({ onLogin }) {
               type="button"
               key={d.u}
               className="chip"
-              onClick={() => {
-                setUsername(d.u);
-                setPassword(d.p);
-                // TEMPORAL: entra directo sin llamar al backend, para poder
-                // navegar la app mientras no hay conexión a Oracle. Cuando el
-                // backend esté listo para producción, quitar esta línea y dejar
-                // que el usuario presione "Ingresar" (llama a api.login arriba).
-                onLogin({ id: d.id, username: d.u, rol: d.rol });
-              }}
+              onClick={() => { setUsername(d.u); setPassword(d.p); }}
             >
               {d.label}
             </button>
